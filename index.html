@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kairo | We Build Your $300K/Month Funnel - Or You Don't Pay</title>
+    <meta name="description" content="We build complete end-to-end paid funnels to get you to $300K/month - or you don't pay. Performance-based: you only pay when revenue increases.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Gold Palette */
+            --gold-primary: #c9a227;
+            --gold-light: #e8d48b;
+            --gold-bright: #ffd700;
+            --gold-dark: #a68523;
+            --gold-glow: rgba(201, 162, 39, 0.5);
+            --gold-glow-soft: rgba(201, 162, 39, 0.2);
+            --gold-glow-intense: rgba(255, 215, 0, 0.6);
+
+            /* Blue accent for glow */
+            --blue-glow: rgba(59, 130, 246, 0.5);
+            --blue-primary: #3b82f6;
+
+            /* Light Theme - Warm Grey/Beige */
+            --bg-primary: #f5f3f0;
+            --bg-secondary: #eeeae5;
+            --bg-tertiary: #e8e4de;
+            --bg-card: #ffffff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-muted: #6b6b6b;
+            --border-light: rgba(0, 0, 0, 0.06);
+            --border-medium: rgba(0, 0, 0, 0.1);
+            --shadow-soft: rgba(0, 0, 0, 0.06);
+            --shadow-medium: rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ============================================
+           STARS/PARTICLES BACKGROUND - MORE DENSE
+        ============================================ */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ============================================
+           FLOATING GLOW ORBS
+        ============================================ */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            animation: floatOrb 25s ease-in-out infinite;
+        }
+
+        .glow-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--gold-glow-soft) 0%, transparent 70%);
+            top: -150px;
+            right: -100px;
+            opacity: 0.6;
+        }
+
+        .glow-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            bottom: 30%;
+            left: -150px;
+            animation-delay: -8s;
+            opacity: 0.5;
+        }
+
+        .glow-orb-3 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, var(--gold-glow-soft) 0%, transparent 70%);
+            top: 50%;
+            right: 10%;
+            animation-delay: -16s;
+            opacity: 0.4;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -40px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+        }
+
+        /* ============================================
+           HERO SECTION - COMPACT, CTA ABOVE FOLD
+        ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem 5%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            max-width: 850px;
+            width: 100%;
+        }
+
+        /* Logo */
+        .logo-container {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: fadeIn 0.8s ease 0.1s forwards;
+        }
+
+        .logo-svg {
+            height: 100px;
+            width: auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.4rem;
+            background: rgba(201, 162, 39, 0.08);
+            border: 1px solid rgba(201, 162, 39, 0.3);
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--gold-dark);
+            margin-bottom: 1.25rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+            box-shadow: 0 0 8px var(--gold-glow);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.3s forwards;
+            letter-spacing: -0.03em;
+        }
+
+        .hero h1 .gold {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subheadline {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 580px;
+            margin: 0 auto 1.5rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.4s forwards;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        /* Hero CTA - Above fold */
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.5s forwards;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.25rem;
+            background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-dark) 100%);
+            border: none;
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 100px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 20px var(--gold-glow), 0 0 40px var(--gold-glow-soft);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 8px 35px var(--gold-glow), 0 0 80px var(--gold-glow-soft);
+        }
+
+        .btn-primary .arrow {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-primary:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid var(--border-medium);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gold-primary);
+            color: var(--gold-dark);
+            background: rgba(201, 162, 39, 0.05);
+            transform: translateY(-3px);
+        }
+
+        /* VSL Container */
+        .vsl-container {
+            position: relative;
+            max-width: 720px;
+            margin: 0 auto;
+            opacity: 0;
+            animation: fadeSlideUp 0.8s ease 0.6s forwards;
+        }
+
+        .vsl-wrapper {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 0.5rem;
+            box-shadow: 0 20px 60px var(--shadow-soft), 0 0 0 1px rgba(201, 162, 39, 0.1);
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .vsl-wrapper:hover {
+            box-shadow: 0 30px 80px var(--shadow-medium), 0 0 60px var(--gold-glow-soft);
+            transform: translateY(-5px);
+        }
+
+        .vsl-inner {
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.3); }
+        }
+
+        /* ============================================
+           TRUST BAR - SIMPLIFIED
+        ============================================ */
+        .trust-bar {
+            padding: 2.5rem 5%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-bar p {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .trust-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-stat {
+            text-align: center;
+        }
+
+        .trust-stat .number {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gold-primary), var(--gold-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .trust-stat .label {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
+
+        /* ============================================
+           CASE STUDIES - 3 PER ROW, SLIDE ANIMATION
+        ============================================ */
+        .case-studies-section {
+            padding: 5rem 5%;
+            position: relative;
+            z-index: 2;
+            background: var(--bg-secondary);
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header span {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2,
+        .problems-header h2,
+        .deliverables-header h2,
+        .final-cta h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .section-header h2 .gold,
+        .problems-header h2 .gold,
+        .deliverables-header h2 .gold,
+        .final-cta h2 .gold {
+            color: var(--gold-primary);
+        }
+
+        .case-studies-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .case-study-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .case-study-card.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .case-study-card:nth-child(2) { transition-delay: 0.1s; }
+        .case-study-card:nth-child(3) { transition-delay: 0.2s; }
+        .case-study-card:nth-child(4) { transition-delay: 0.3s; }
+        .case-study-card:nth-child(5) { transition-delay: 0.4s; }
+        .case-study-card:nth-child(6) { transition-delay: 0.5s; }
+        .case-study-card:nth-child(7) { transition-delay: 0.1s; }
+        .case-study-card:nth-child(8) { transition-delay: 0.2s; }
+        .case-study-card:nth-child(9) { transition-delay: 0.3s; }
+
+        .case-study-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 50px var(--shadow-medium), 0 0 40px var(--gold-glow-soft);
+            border-color: rgba(201, 162, 39, 0.3);
+        }
+
+        .case-study-video {
+            position: relative;
+            padding-top: 56.25%;
+            background: #111;
+        }
+
+        .case-study-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* ============================================
+           PROBLEMS/PAIN POINTS - HORIZONTAL SCROLL CARDS
+        ============================================ */
+        .problems-section {
+            padding: 5rem 5%;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .problems-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .problems-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .problems-header span {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+        }
+
+
+        .problems-scroll {
+            display: flex;
+            gap: 1.5rem;
+            overflow-x: auto;
+            padding: 2rem 0.5rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .problems-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .problem-card {
+            flex: 0 0 320px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 2rem;
+            scroll-snap-align: center;
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gold-primary), var(--blue-primary));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .problem-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .problem-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px var(--shadow-medium), 0 0 50px var(--gold-glow-soft);
+            border-color: rgba(201, 162, 39, 0.3);
+        }
+
+        .problem-card:hover::before {
+            opacity: 1;
+        }
+
+        .problem-card:nth-child(1) { transition-delay: 0s; }
+        .problem-card:nth-child(2) { transition-delay: 0.1s; }
+        .problem-card:nth-child(3) { transition-delay: 0.2s; }
+        .problem-card:nth-child(4) { transition-delay: 0.3s; }
+        .problem-card:nth-child(5) { transition-delay: 0.4s; }
+        .problem-card:nth-child(6) { transition-delay: 0.5s; }
+
+        .problem-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .problem-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .problem-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Glowing stars background */
+        .glow-star {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: var(--gold-primary);
+            border-radius: 50%;
+            box-shadow: 0 0 20px var(--gold-glow), 0 0 40px var(--gold-glow-soft), 0 0 60px var(--gold-glow-soft);
+            animation: starGlow 3s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes starGlow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.5); }
+        }
+
+        .glow-star-1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .glow-star-2 { top: 20%; right: 10%; animation-delay: 0.5s; background: var(--blue-primary); box-shadow: 0 0 20px var(--blue-glow), 0 0 40px var(--blue-glow); }
+        .glow-star-3 { top: 50%; left: 8%; animation-delay: 1s; }
+        .glow-star-4 { top: 70%; right: 5%; animation-delay: 1.5s; background: var(--blue-primary); box-shadow: 0 0 20px var(--blue-glow), 0 0 40px var(--blue-glow); }
+        .glow-star-5 { top: 85%; left: 15%; animation-delay: 2s; }
+        .glow-star-6 { top: 30%; right: 15%; animation-delay: 2.5s; background: var(--gold-bright); }
+
+        /* Blue glow stars variation */
+        .glow-star-blue {
+            background: var(--blue-primary);
+            box-shadow: 0 0 20px var(--blue-glow), 0 0 40px var(--blue-glow), 0 0 60px var(--blue-glow);
+        }
+
+        /* Large glow star */
+        .glow-star-lg {
+            width: 10px;
+            height: 10px;
+        }
+
+        /* ============================================
+           DELIVERABLES STACK - GLOWING LINE
+        ============================================ */
+        .deliverables-section {
+            padding: 5rem 5%;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .deliverables-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .deliverables-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .deliverables-header span {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* deliverables h2 and .gold styled by unified rule above */
+
+        .deliverables-stack {
+            position: relative;
+            padding-left: 60px;
+        }
+
+        /* Glowing progress line */
+        .progress-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--border-light);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-line-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: linear-gradient(180deg, var(--gold-primary), var(--blue-primary), var(--gold-bright));
+            border-radius: 4px;
+            transition: height 0.1s ease-out;
+            box-shadow: 0 0 20px var(--gold-glow), 0 0 40px var(--blue-glow);
+        }
+
+        .deliverable-item {
+            position: relative;
+            padding: 1rem 0 1rem 1.5rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .deliverable-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .deliverable-item.active {
+            transform: translateX(10px);
+        }
+
+        .deliverable-item.active .deliverable-content {
+            background: rgba(201, 162, 39, 0.08);
+            border-color: rgba(201, 162, 39, 0.3);
+            box-shadow: 0 0 30px var(--gold-glow-soft), 0 8px 25px var(--shadow-soft);
+        }
+
+        .deliverable-dot {
+            position: absolute;
+            left: -48px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background: var(--bg-primary);
+            border: 3px solid var(--border-medium);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+            z-index: 2;
+        }
+
+        .deliverable-item.active .deliverable-dot {
+            background: var(--gold-primary);
+            border-color: var(--gold-primary);
+            box-shadow: 0 0 20px var(--gold-glow), 0 0 40px var(--gold-glow-soft);
+            transform: translateY(-50%) scale(1.3);
+        }
+
+        .deliverable-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.4s ease;
+        }
+
+        .deliverable-icon {
+            font-size: 1.25rem;
+            min-width: 24px;
+        }
+
+        .deliverable-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .deliverable-item:nth-child(1) { transition-delay: 0s; }
+        .deliverable-item:nth-child(2) { transition-delay: 0.03s; }
+        .deliverable-item:nth-child(3) { transition-delay: 0.06s; }
+        .deliverable-item:nth-child(4) { transition-delay: 0.09s; }
+        .deliverable-item:nth-child(5) { transition-delay: 0.12s; }
+        .deliverable-item:nth-child(6) { transition-delay: 0.15s; }
+        .deliverable-item:nth-child(7) { transition-delay: 0.18s; }
+        .deliverable-item:nth-child(8) { transition-delay: 0.21s; }
+        .deliverable-item:nth-child(9) { transition-delay: 0.24s; }
+        .deliverable-item:nth-child(10) { transition-delay: 0.27s; }
+        .deliverable-item:nth-child(11) { transition-delay: 0.30s; }
+        .deliverable-item:nth-child(12) { transition-delay: 0.33s; }
+        .deliverable-item:nth-child(13) { transition-delay: 0.36s; }
+        .deliverable-item:nth-child(14) { transition-delay: 0.39s; }
+        .deliverable-item:nth-child(15) { transition-delay: 0.42s; }
+        .deliverable-item:nth-child(16) { transition-delay: 0.45s; }
+        .deliverable-item:nth-child(17) { transition-delay: 0.48s; }
+        .deliverable-item:nth-child(18) { transition-delay: 0.51s; }
+        .deliverable-item:nth-child(19) { transition-delay: 0.54s; }
+        .deliverable-item:nth-child(20) { transition-delay: 0.57s; }
+
+        /* ============================================
+           PROCESS EMBED SECTION
+        ============================================ */
+        .process-section {
+            padding: 5rem 5%;
+            position: relative;
+            z-index: 2;
+            background: var(--bg-secondary);
+            overflow: hidden;
+        }
+
+        .process-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .process-embed {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 0.75rem;
+            box-shadow: 0 15px 50px var(--shadow-soft);
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .process-embed:hover {
+            box-shadow: 0 25px 70px var(--shadow-medium), 0 0 50px var(--gold-glow-soft);
+            transform: translateY(-5px);
+        }
+
+        .process-embed iframe {
+            border-radius: 14px;
+            width: 100%;
+            height: 450px;
+        }
+
+        /* ============================================
+           FINAL CTA
+        ============================================ */
+        .final-cta {
+            padding: 6rem 5%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            overflow: visible;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--gold-glow-soft) 0%, transparent 60%);
+            animation: ctaPulse 5s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes ctaPulse {
+            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.15); }
+        }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        /* Guarantee badge */
+        .guarantee-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.75rem;
+            background: rgba(34, 197, 94, 0.08);
+            border: 1px solid rgba(34, 197, 94, 0.25);
+            border-radius: 100px;
+            margin-bottom: 2rem;
+        }
+
+        .guarantee-badge .icon {
+            font-size: 1.25rem;
+        }
+
+        .guarantee-badge span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #16a34a;
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 1024px) {
+            .case-studies-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .case-studies-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .trust-logos {
+                gap: 1.5rem;
+            }
+
+            .trust-stat .number {
+                font-size: 1.5rem;
+            }
+
+            .deliverables-stack {
+                padding-left: 50px;
+            }
+
+            .progress-line {
+                left: 15px;
+            }
+
+            .deliverable-dot {
+                left: -42px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .logo-svg {
+                height: 80px;
+            }
+        }
+
+        /* ============================================
+           CARD FLOAT ANIMATION
+        ============================================ */
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .float-card {
+            animation: cardFloat 4s ease-in-out infinite;
+        }
+
+        .float-card:nth-child(2) { animation-delay: -1s; }
+        .float-card:nth-child(3) { animation-delay: -2s; }
+
+        /* ============================================
+           SHIMMER EFFECT
+        ============================================ */
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(15deg); }
+            100% { transform: translateX(200%) rotate(15deg); }
+        }
+
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        /* Enhanced glow pulse for stats */
+        .trust-stat {
+            animation: statPulse 4s ease-in-out infinite;
+        }
+
+        .trust-stat:nth-child(1) { animation-delay: 0s; }
+        .trust-stat:nth-child(2) { animation-delay: 1.3s; }
+        .trust-stat:nth-child(3) { animation-delay: 2.6s; }
+
+        @keyframes statPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Floating glow orbs for sections */
+        @keyframes floatGlow {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.4;
+            }
+            25% {
+                transform: translate(20px, -30px) scale(1.1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translate(-10px, -50px) scale(0.9);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translate(-30px, -20px) scale(1.05);
+                opacity: 0.4;
+            }
+        }
+
+        .section-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--gold-glow-soft) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(60px);
+            pointer-events: none;
+            animation: floatGlow 15s ease-in-out infinite;
+        }
+
+        /* Card entrance animation */
+        @keyframes cardEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) rotateX(10deg);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotateX(0deg);
+            }
+        }
+
+        /* Glow ring animation for buttons */
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border-radius: 100px;
+            background: linear-gradient(90deg, var(--gold-primary), var(--blue-primary), var(--gold-primary));
+            background-size: 200% 100%;
+            z-index: -1;
+            opacity: 0;
+            animation: glowRing 3s linear infinite;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn-primary:hover::after {
+            opacity: 0.7;
+        }
+
+        @keyframes glowRing {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Text gradient animation */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero h1 .gold {
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 25%, var(--gold-bright) 50%, var(--gold-primary) 75%, var(--gold-dark) 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease-in-out infinite;
+        }
+
+        /* ============================================
+           PREMIUM ANIMATIONS
+        ============================================ */
+
+        /* 1. Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold-primary), var(--blue-primary), var(--gold-bright));
+            z-index: 9999;
+            transition: width 0.1s ease-out;
+            box-shadow: 0 0 10px var(--gold-glow), 0 0 20px var(--gold-glow-soft);
+        }
+
+        /* 2. Cursor Spotlight */
+        .cursor-spotlight {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            background: radial-gradient(circle, rgba(201, 162, 39, 0.08) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        body:hover .cursor-spotlight {
+            opacity: 1;
+        }
+
+        /* 3. Magnetic Buttons */
+        .btn-magnetic {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* 4. 3D Card Tilt */
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.3s ease;
+        }
+
+        .tilt-card:hover {
+            transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg)) scale(1.02);
+        }
+
+        .tilt-card .tilt-content {
+            transform: translateZ(20px);
+        }
+
+        /* 5. Animated Gradient Borders */
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(90deg, var(--gold-primary), var(--blue-primary), var(--gold-bright), var(--gold-primary));
+            background-size: 300% 100%;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderGradient 4s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+
+        @keyframes borderGradient {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* 6. Morphing Blobs */
+        .morph-blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--gold-glow-soft) 0%, transparent 70%);
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+            animation: morphBlob 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(80px);
+            opacity: 0.4;
+        }
+
+        .morph-blob-1 {
+            top: 10%;
+            right: -10%;
+        }
+
+        .morph-blob-2 {
+            bottom: 20%;
+            left: -15%;
+            animation-delay: -7s;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+        }
+
+        @keyframes morphBlob {
+            0%, 100% {
+                border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%;
+                transform: translate(30px, -50px) rotate(90deg);
+            }
+            50% {
+                border-radius: 50% 60% 30% 60% / 70% 40% 70% 30%;
+                transform: translate(-20px, 20px) rotate(180deg);
+            }
+            75% {
+                border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+                transform: translate(20px, -20px) rotate(270deg);
+            }
+        }
+
+        /* 7. Word-by-Word Reveal */
+        .word-reveal .word {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .word-reveal.revealed .word {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 8. Counter Animation */
+        .counter-number {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .counter-number.counting {
+            animation: countPulse 0.1s ease-in-out;
+        }
+
+        @keyframes countPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* 9. Elastic Bounce */
+        @keyframes elasticBounce {
+            0% { transform: scale(0) translateY(30px); opacity: 0; }
+            50% { transform: scale(1.1) translateY(-10px); }
+            70% { transform: scale(0.95) translateY(5px); }
+            100% { transform: scale(1) translateY(0); opacity: 1; }
+        }
+
+        .elastic-reveal {
+            animation: elasticBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        /* 10. Particle Connection Lines */
+        #connection-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* 11. Parallax depth layers */
+        .parallax-layer {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* 12. Text blur to focus */
+        .blur-reveal {
+            filter: blur(10px);
+            opacity: 0;
+            transition: all 0.8s ease;
+        }
+
+        .blur-reveal.revealed {
+            filter: blur(0);
+            opacity: 1;
+        }
+
+        /* 13. Staggered flip reveal */
+        .flip-reveal {
+            transform: rotateX(90deg);
+            opacity: 0;
+            transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .flip-reveal.revealed {
+            transform: rotateX(0deg);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Particles Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Background Glow -->
+    <div class="bg-glow">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <!-- Logo -->
+            <div class="logo-container">
+                <svg class="logo-svg" viewBox="0 0 200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M100 15 L185 165 L15 165 Z" stroke="url(#goldGradient)" stroke-width="3" fill="none"/>
+                    <circle cx="100" cy="110" r="38" stroke="url(#goldGradient)" stroke-width="3" fill="none"/>
+                    <text x="100" y="200" text-anchor="middle" font-family="Inter, sans-serif" font-size="28" font-weight="300" letter-spacing="12" fill="url(#goldGradient)">KAIRO</text>
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e8d48b"/>
+                            <stop offset="50%" style="stop-color:#c9a227"/>
+                            <stop offset="100%" style="stop-color:#a68523"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+
+            <span class="hero-badge">For Businesses Doing $100K-$300K/Month</span>
+            <h1>
+                We'll build you whole end to end paid funnel to get you to <span class="gold">$300k/month or you don't pay.</span>
+            </h1>
+            <p class="hero-subheadline">
+                You've tried agencies. You've tried doing it yourself. Nothing worked.<br>
+                We build your entire funnel from scratch — and you only pay when revenue goes up.
+            </p>
+
+            <!-- CTA Above Fold -->
+            <div class="hero-cta">
+                <a href="https://calendly.com/kairoscales/30min" class="btn-primary" target="_blank">
+                    See If You Qualify <span class="arrow">→</span>
+                </a>
+                <a href="#testimonials" class="btn-secondary">Watch Case Studies</a>
+            </div>
+
+            <!-- VSL Embed -->
+            <div class="vsl-container">
+                <div class="vsl-wrapper">
+                    <div class="vsl-inner">
+                        <script src="https://fast.wistia.com/player.js" async></script>
+                        <script src="https://fast.wistia.com/embed/7i60n49s27.js" async type="module"></script>
+                        <style>wistia-player[media-id='7i60n49s27']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/7i60n49s27/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style>
+                        <wistia-player media-id="7i60n49s27" aspect="1.7777777777777777"></wistia-player>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <section class="trust-bar">
+        <p>Results That Speak For Themselves</p>
+        <div class="trust-logos">
+            <div class="trust-stat">
+                <div class="number">5X</div>
+                <div class="label">Average ROAS</div>
+            </div>
+            <div class="trust-stat">
+                <div class="number">14</div>
+                <div class="label">Days to Launch</div>
+            </div>
+            <div class="trust-stat">
+                <div class="number">$0</div>
+                <div class="label">If We Don't Perform</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies-section" id="testimonials">
+        <!-- Glowing Stars -->
+        <div class="glow-star glow-star-1"></div>
+        <div class="glow-star glow-star-2"></div>
+        <div class="glow-star glow-star-3"></div>
+        <div class="glow-star glow-star-4"></div>
+        <div class="glow-star glow-star-5"></div>
+        <div class="glow-star glow-star-6"></div>
+
+        <div class="section-header">
+            <span>Proof It Works</span>
+            <h2>They Were Stuck Too — <span class="gold">Until We Built Their Funnel</span></h2>
+        </div>
+        <div class="case-studies-grid">
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1150973919?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1154957070?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1154956581?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1154956245?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1154955790?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1154954208?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1154953302?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1154953067?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+            <div class="case-study-card">
+                <div class="case-study-video">
+                    <iframe src="https://player.vimeo.com/video/1154952529?badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problems Section - Pain Points -->
+    <section class="problems-section">
+        <!-- Glowing Stars -->
+        <div class="glow-star glow-star-1"></div>
+        <div class="glow-star glow-star-2"></div>
+        <div class="glow-star glow-star-3"></div>
+        <div class="glow-star glow-star-4"></div>
+        <div class="glow-star glow-star-5"></div>
+        <div class="glow-star glow-star-6"></div>
+
+        <div class="problems-container">
+            <div class="problems-header">
+                <span>Why You're Still Stuck</span>
+                <h2>You've Done Everything Right — <span class="gold">So Why Aren't You at $300K Yet?</span></h2>
+            </div>
+            <div class="problems-scroll">
+                <div class="problem-card">
+                    <span class="problem-icon">💀</span>
+                    <h3>"We'll Get You Results" (They Didn't)</h3>
+                    <p>You've paid $5K, $10K, even $20K to agencies who promised the world. 6 months later? Same revenue. Different excuses. You're starting to wonder if it's you.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">🎰</span>
+                    <h3>Your Funnel is a Casino</h3>
+                    <p>Some months are great. Most aren't. You have no idea why. Your "funnel" is a landing page, a prayer, and a Calendly link. No VSL. No nurture. No system.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">🔥</span>
+                    <h3>Every Dollar Feels Like a Gamble</h3>
+                    <p>You want to spend $50K/month on ads but you're terrified. Last time you scaled, ROAS tanked and you lost $12K in a week. Now you're gun-shy.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">😤</span>
+                    <h3>Your Sales Team is Exhausted</h3>
+                    <p>Half your calls are tire-kickers who "need to think about it." Your closers are demoralized. You know lead quality is the problem, but you don't know how to fix it.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">⏰</span>
+                    <h3>You're Working IN the Business, Not ON It</h3>
+                    <p>You're still writing copy, fixing automations, and managing ads yourself because no one else "gets it." You're the bottleneck and you know it.</p>
+                </div>
+                <div class="problem-card">
+                    <span class="problem-icon">📉</span>
+                    <h3>Starting to Think This is Your Ceiling</h3>
+                    <p>You've been at $150K-$200K for 18 months. You've tried everything. Part of you is starting to believe $300K+ just isn't in the cards for your business.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Deliverables Stack -->
+    <section class="deliverables-section" id="deliverables">
+        <!-- Glowing Stars -->
+        <div class="glow-star glow-star-1"></div>
+        <div class="glow-star glow-star-2"></div>
+        <div class="glow-star glow-star-3"></div>
+        <div class="glow-star glow-star-4"></div>
+
+        <div class="deliverables-container">
+            <div class="deliverables-header">
+                <span>The Complete System</span>
+                <h2>Everything We Build <span class="gold">For You</span></h2>
+                <p style="color: var(--text-secondary); margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">This isn't "just ads." We build your entire revenue machine from scratch — the funnel, the copy, the videos, the emails, the automations. You focus on closing deals.</p>
+            </div>
+            <div class="deliverables-stack" id="deliverables-stack">
+                <div class="progress-line">
+                    <div class="progress-line-fill" id="progress-fill"></div>
+                </div>
+
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">💡</span>
+                        <span class="deliverable-text">Funnel Ideation</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🏗️</span>
+                        <span class="deliverable-text">Funnel Buildout</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🎁</span>
+                        <span class="deliverable-text">Front End Offer Creation</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">✍️</span>
+                        <span class="deliverable-text">Landing Page Copy</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🎨</span>
+                        <span class="deliverable-text">Landing Page Design</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">📝</span>
+                        <span class="deliverable-text">Typeform Scripting</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">📋</span>
+                        <span class="deliverable-text">Typeform Buildout</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🎬</span>
+                        <span class="deliverable-text">VSL Scripting</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🎞️</span>
+                        <span class="deliverable-text">VSL Editing</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">📢</span>
+                        <span class="deliverable-text">Ad Scripting</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🎥</span>
+                        <span class="deliverable-text">Ad Editing</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">📧</span>
+                        <span class="deliverable-text">Opt-in Emails Writing</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">⚙️</span>
+                        <span class="deliverable-text">Opt-in Emails Setup</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">💌</span>
+                        <span class="deliverable-text">Nurture Emails Writing</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🔧</span>
+                        <span class="deliverable-text">Nurture Emails Setup</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🙏</span>
+                        <span class="deliverable-text">Thank You Page Videos Scripting</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">✂️</span>
+                        <span class="deliverable-text">Thank You Page Videos Editing</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">🔗</span>
+                        <span class="deliverable-text">All Automations & App Connections</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">📊</span>
+                        <span class="deliverable-text">Language Report for Sales Calls</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">📍</span>
+                        <span class="deliverable-text">Ad Pixel Setup</span>
+                    </div>
+                </div>
+                <div class="deliverable-item">
+                    <div class="deliverable-dot"></div>
+                    <div class="deliverable-content">
+                        <span class="deliverable-icon">📚</span>
+                        <span class="deliverable-text">Client Onboarding Materials</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <!-- Glowing Stars -->
+        <div class="glow-star glow-star-1"></div>
+        <div class="glow-star glow-star-2"></div>
+        <div class="glow-star glow-star-3"></div>
+        <div class="glow-star glow-star-4"></div>
+        <div class="glow-star glow-star-5"></div>
+
+        <div class="section-header">
+            <span>From Zero to Scaled in 14 Days</span>
+            <h2>How We Take You From Stuck to <span class="gold">$300K/Month</span></h2>
+        </div>
+        <div class="process-container">
+            <div class="process-embed">
+                <iframe src="https://miro.com/app/live-embed/uXjVJ0xDDfk=/?embedMode=view_only_without_ui&moveToViewport=-196,903,7261,4189&embedId=871194254017" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <!-- Glowing Stars -->
+        <div class="glow-star glow-star-1"></div>
+        <div class="glow-star glow-star-2"></div>
+        <div class="glow-star glow-star-3"></div>
+        <div class="glow-star glow-star-4"></div>
+        <div class="glow-star glow-star-5"></div>
+        <div class="glow-star glow-star-6"></div>
+
+        <div class="final-cta-content">
+            <h2>You've Read This Far Because <span class="gold">Something Needs to Change</span></h2>
+            <p>You have two choices right now. Keep doing what you're doing — same revenue, same frustration, same ceiling. Or get on a call with us and find out if we can build the funnel that actually breaks you through.</p>
+            <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 1.5rem;">This isn't a sales call. It's a strategy session. We'll map out your funnel, show you the gaps, and tell you honestly if we can help. If we can't, we'll tell you that too.</p>
+            <div class="guarantee-badge">
+                <span class="icon">🛡️</span>
+                <span>Zero Risk: You only pay when your revenue increases</span>
+            </div>
+            <a href="https://calendly.com/kairoscales/30min" class="btn-primary shimmer-effect" target="_blank">
+                Book Your Strategy Call Now <span class="arrow">→</span>
+            </a>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1.5rem;">We only take on 4 new clients per month. If you're serious about scaling, don't wait.</p>
+        </div>
+    </section>
+
+    <script>
+        // ============================================
+        // DENSE STAR PARTICLES
+        // ============================================
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let mouseX = 0, mouseY = 0;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = document.body.scrollHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY + window.scrollY;
+        });
+
+        class Star {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2.5 + 0.5;
+                this.baseOpacity = Math.random() * 0.5 + 0.2;
+                this.opacity = this.baseOpacity;
+                this.twinkleSpeed = Math.random() * 0.02 + 0.01;
+                this.twinklePhase = Math.random() * Math.PI * 2;
+                this.isGold = Math.random() > 0.3;
+            }
+            update() {
+                this.twinklePhase += this.twinkleSpeed;
+                this.opacity = this.baseOpacity + Math.sin(this.twinklePhase) * 0.2;
+
+                // Mouse interaction
+                const dx = mouseX - this.x;
+                const dy = mouseY - this.y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 100) {
+                    this.opacity = Math.min(1, this.opacity + (100 - dist) / 200);
+                    this.size = Math.min(4, this.size + 0.1);
+                } else {
+                    this.size = Math.max(0.5, this.size - 0.05);
+                }
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                if (this.isGold) {
+                    ctx.fillStyle = `rgba(201, 162, 39, ${this.opacity})`;
+                } else {
+                    ctx.fillStyle = `rgba(59, 130, 246, ${this.opacity * 0.6})`;
+                }
+                ctx.fill();
+
+                // Glow effect for larger stars
+                if (this.size > 1.5) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
+                    ctx.fillStyle = this.isGold
+                        ? `rgba(201, 162, 39, ${this.opacity * 0.15})`
+                        : `rgba(59, 130, 246, ${this.opacity * 0.1})`;
+                    ctx.fill();
+                }
+            }
+        }
+
+        // Create many stars
+        for (let i = 0; i < 200; i++) {
+            particles.push(new Star());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Resize canvas on scroll (for full page coverage)
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                resizeCanvas();
+            }, 100);
+        });
+
+        // ============================================
+        // CASE STUDY CARD SLIDE ANIMATION
+        // ============================================
+        const caseStudyCards = document.querySelectorAll('.case-study-card');
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        caseStudyCards.forEach(card => cardObserver.observe(card));
+
+        // ============================================
+        // PROBLEM CARDS ANIMATION
+        // ============================================
+        const problemCards = document.querySelectorAll('.problem-card');
+        const problemObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2, rootMargin: '0px 0px -30px 0px' });
+
+        problemCards.forEach(card => problemObserver.observe(card));
+
+        // ============================================
+        // DELIVERABLES GLOWING LINE
+        // ============================================
+        const deliverablesSection = document.getElementById('deliverables-stack');
+        const progressFill = document.getElementById('progress-fill');
+        const deliverableItems = document.querySelectorAll('.deliverable-item');
+
+        // Make items visible on scroll
+        const itemObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        deliverableItems.forEach(item => itemObserver.observe(item));
+
+        // Update progress line and active item on scroll
+        function updateDeliverables() {
+            if (!deliverablesSection) return;
+
+            const rect = deliverablesSection.getBoundingClientRect();
+            const sectionTop = rect.top;
+            const sectionHeight = rect.height;
+            const windowHeight = window.innerHeight;
+
+            // Calculate progress (0 to 1)
+            const scrollProgress = Math.max(0, Math.min(1,
+                (windowHeight * 0.5 - sectionTop) / sectionHeight
+            ));
+
+            // Update progress line
+            progressFill.style.height = (scrollProgress * 100) + '%';
+
+            // Update active items
+            deliverableItems.forEach((item, index) => {
+                const itemProgress = (index + 1) / deliverableItems.length;
+                if (scrollProgress >= itemProgress - 0.05) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateDeliverables);
+        updateDeliverables();
+
+        // ============================================
+        // SMOOTH SCROLL
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ============================================
+        // PREMIUM ANIMATIONS
+        // ============================================
+
+        // 1. Scroll Progress Bar
+        const scrollProgress = document.createElement('div');
+        scrollProgress.className = 'scroll-progress';
+        document.body.appendChild(scrollProgress);
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // 2. Cursor Spotlight
+        const cursorSpotlight = document.createElement('div');
+        cursorSpotlight.className = 'cursor-spotlight';
+        document.body.appendChild(cursorSpotlight);
+
+        document.addEventListener('mousemove', (e) => {
+            cursorSpotlight.style.left = e.clientX + 'px';
+            cursorSpotlight.style.top = e.clientY + 'px';
+        });
+
+        // 3. Magnetic Buttons
+        document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+            btn.classList.add('btn-magnetic');
+
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+            });
+
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0) scale(1)';
+            });
+        });
+
+        // 4. 3D Card Tilt Effect
+        document.querySelectorAll('.problem-card, .case-study-card, .vsl-wrapper').forEach(card => {
+            card.classList.add('tilt-card');
+
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const tiltX = (y - centerY) / 10;
+                const tiltY = (centerX - x) / 10;
+
+                card.style.setProperty('--tilt-x', tiltX + 'deg');
+                card.style.setProperty('--tilt-y', tiltY + 'deg');
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.style.setProperty('--tilt-x', '0deg');
+                card.style.setProperty('--tilt-y', '0deg');
+            });
+        });
+
+        // 5. Animated Gradient Borders
+        document.querySelectorAll('.deliverable-content').forEach(item => {
+            item.classList.add('gradient-border');
+        });
+
+        // 6. Morphing Blobs
+        const blob1 = document.createElement('div');
+        blob1.className = 'morph-blob morph-blob-1';
+        document.body.appendChild(blob1);
+
+        const blob2 = document.createElement('div');
+        blob2.className = 'morph-blob morph-blob-2';
+        document.body.appendChild(blob2);
+
+        // 7. Word-by-Word Reveal for section headers (not hero - hero uses fadeSlideUp)
+        // Hero h1 keeps its original CSS animation to preserve the gold gradient text effect
+
+        // 8. Counter Animation for Stats
+        function animateCounter(element, target, suffix = '') {
+            const duration = 2000;
+            const start = 0;
+            const startTime = performance.now();
+
+            function update(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(easeProgress * target);
+
+                element.textContent = current + suffix;
+                element.classList.add('counting');
+
+                setTimeout(() => {
+                    element.classList.remove('counting');
+                }, 50);
+
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                } else {
+                    element.textContent = target + suffix;
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.number');
+                    statNumbers.forEach(num => {
+                        const text = num.textContent;
+                        if (text === '5X') {
+                            num.textContent = '0X';
+                            animateCounter(num, 5, 'X');
+                        } else if (text === '14') {
+                            num.textContent = '0';
+                            animateCounter(num, 14, '');
+                        } else if (text === '$0') {
+                            num.textContent = '$0';
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const trustBar = document.querySelector('.trust-bar');
+        if (trustBar) {
+            statsObserver.observe(trustBar);
+        }
+
+        // 9. Blur-to-Focus Reveal
+        document.querySelectorAll('.section-header h2, .problems-header h2, .deliverables-header h2').forEach(h2 => {
+            h2.classList.add('blur-reveal');
+        });
+
+        const blurObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, { threshold: 0.3 });
+
+        document.querySelectorAll('.blur-reveal').forEach(el => blurObserver.observe(el));
+
+        // 10. Particle Connection Lines
+        const connectionCanvas = document.createElement('canvas');
+        connectionCanvas.id = 'connection-canvas';
+        document.body.insertBefore(connectionCanvas, document.body.firstChild);
+        const connCtx = connectionCanvas.getContext('2d');
+
+        function resizeConnectionCanvas() {
+            connectionCanvas.width = window.innerWidth;
+            connectionCanvas.height = document.body.scrollHeight;
+        }
+        resizeConnectionCanvas();
+        window.addEventListener('resize', resizeConnectionCanvas);
+
+        function drawConnections() {
+            connCtx.clearRect(0, 0, connectionCanvas.width, connectionCanvas.height);
+
+            const connectionDistance = 150;
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectionDistance) {
+                        const opacity = (1 - dist / connectionDistance) * 0.15;
+                        connCtx.beginPath();
+                        connCtx.moveTo(particles[i].x, particles[i].y);
+                        connCtx.lineTo(particles[j].x, particles[j].y);
+                        connCtx.strokeStyle = particles[i].isGold
+                            ? `rgba(201, 162, 39, ${opacity})`
+                            : `rgba(59, 130, 246, ${opacity})`;
+                        connCtx.lineWidth = 1;
+                        connCtx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(drawConnections);
+        }
+        drawConnections();
+
+        // 11. Parallax effect on scroll
+        let lastScrollY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const delta = scrollY - lastScrollY;
+
+            document.querySelectorAll('.glow-orb').forEach((orb, i) => {
+                const speed = 0.05 * (i + 1);
+                const currentTransform = orb.style.transform || '';
+                const newY = parseFloat(orb.dataset.parallaxY || 0) + delta * speed;
+                orb.dataset.parallaxY = newY;
+                orb.style.transform = `translateY(${newY}px)`;
+            });
+
+            lastScrollY = scrollY;
+        });
+
+        // Resize connection canvas on scroll too
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                resizeConnectionCanvas();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
